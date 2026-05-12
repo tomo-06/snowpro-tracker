@@ -29,16 +29,24 @@ const DomainSection: React.FC<DomainSectionProps> = ({
   const progressRate =
     allTopics.length > 0 ? Math.round((completedCount / allTopics.length) * 100) : 0;
 
+  // 進捗率に応じたバー色
+  const getBarColor = (): string => {
+    if (progressRate >= 80) return 'bg-emerald-500';
+    if (progressRate >= 50) return 'bg-blue-500';
+    if (progressRate >= 20) return 'bg-blue-400';
+    return 'bg-gray-300';
+  };
+
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
       {/* ドメインヘッダー（クリックで折りたたみ） */}
       <button
         onClick={() => setIsExpanded((prev) => !prev)}
-        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors text-left"
+        className="w-full flex items-center gap-3 px-5 py-4 hover:bg-slate-50 transition-colors text-left"
       >
         {/* 折りたたみアイコン */}
         <span
-          className={`flex-shrink-0 text-gray-400 transition-transform duration-200 ${
+          className={`flex-shrink-0 text-blue-400 transition-transform duration-200 ${
             isExpanded ? 'rotate-90' : 'rotate-0'
           }`}
         >
@@ -49,7 +57,7 @@ const DomainSection: React.FC<DomainSectionProps> = ({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-2">
             <h2 className="text-sm font-bold text-gray-800">{domain.name}</h2>
-            <span className="text-xs bg-blue-50 text-blue-600 px-1.5 py-0.5 rounded font-medium">
+            <span className="text-xs bg-blue-50 text-blue-600 px-2 py-0.5 rounded-full font-semibold border border-blue-100">
               {domain.weight}%
             </span>
           </div>
@@ -59,23 +67,15 @@ const DomainSection: React.FC<DomainSectionProps> = ({
         <div className="flex items-center gap-3 flex-shrink-0">
           {/* ミニプログレスバー（モバイルでは非表示） */}
           <div className="hidden sm:flex items-center gap-2">
-            <div className="w-24 bg-gray-200 rounded-full h-1.5 overflow-hidden">
+            <div className="w-28 bg-gray-100 rounded-full h-2 overflow-hidden">
               <div
-                className={`h-1.5 rounded-full ${
-                  progressRate >= 80
-                    ? 'bg-green-500'
-                    : progressRate >= 50
-                    ? 'bg-blue-500'
-                    : progressRate >= 20
-                    ? 'bg-yellow-400'
-                    : 'bg-gray-300'
-                }`}
+                className={`h-2 rounded-full transition-all duration-500 ${getBarColor()}`}
                 style={{ width: `${progressRate}%` }}
               />
             </div>
-            <span className="text-xs text-gray-500 w-10 text-right">{progressRate}%</span>
+            <span className="text-xs font-semibold text-gray-600 w-10 text-right">{progressRate}%</span>
           </div>
-          <span className="text-xs text-gray-500">
+          <span className="text-xs text-gray-400">
             {completedCount}/{allTopics.length}
           </span>
         </div>
@@ -85,15 +85,15 @@ const DomainSection: React.FC<DomainSectionProps> = ({
       {isExpanded && (
         <div className="border-t border-gray-100">
           {/* 列ヘッダー */}
-          <div className="flex items-center gap-3 px-4 py-1.5 bg-gray-50 border-b border-gray-100">
+          <div className="flex items-center gap-3 px-5 py-2 bg-slate-50 border-b border-gray-100">
             <div className="flex-1 text-xs text-gray-400 font-medium">トピック名</div>
             <div className="hidden sm:block w-16 text-xs text-gray-400 text-center">最終学習</div>
-            <div className="w-16 text-xs text-gray-400 text-center">ステータス</div>
-            <div className="w-10"></div>
+            <div className="w-20 text-xs text-gray-400 text-center">ステータス</div>
+            <div className="w-12"></div>
           </div>
 
           {topics.length === 0 ? (
-            <div className="px-4 py-6 text-center text-sm text-gray-400">
+            <div className="px-5 py-8 text-center text-sm text-gray-400">
               このドメインにはトピックがありません
             </div>
           ) : (

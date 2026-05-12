@@ -40,7 +40,7 @@ const TopicRow: React.FC<TopicRowProps> = ({ topic, onStatusChange, onOpenDetail
   };
 
   return (
-    <div className="flex items-center gap-3 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-50 last:border-b-0">
+    <div className="flex items-center gap-3 px-5 py-3 hover:bg-slate-50 transition-colors border-b border-gray-50 last:border-b-0">
       {/* トピック名（主要情報） */}
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-1.5">
@@ -67,7 +67,7 @@ const TopicRow: React.FC<TopicRowProps> = ({ topic, onStatusChange, onOpenDetail
       <button
         onClick={handleStatusClick}
         title="クリックでステータスを切り替え"
-        className="flex-shrink-0 hover:opacity-80 transition-opacity"
+        className="flex-shrink-0 w-20 flex justify-center hover:opacity-75 transition-opacity"
       >
         <StatusBadge status={topic.status} />
       </button>
@@ -75,7 +75,7 @@ const TopicRow: React.FC<TopicRowProps> = ({ topic, onStatusChange, onOpenDetail
       {/* 詳細ボタン */}
       <button
         onClick={() => onOpenDetail(topic)}
-        className="flex-shrink-0 px-3 py-1.5 text-xs font-medium text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-colors border border-blue-200"
+        className="flex-shrink-0 w-12 px-2 py-1.5 text-xs font-semibold text-blue-600 hover:text-white hover:bg-blue-600 rounded-lg transition-all border border-blue-200 text-center"
       >
         詳細
       </button>

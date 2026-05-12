@@ -30,8 +30,11 @@ const SettingsPage: React.FC<SettingsPageProps> = ({
 
   return (
     <div className="space-y-5 max-w-2xl">
-      {/* ページタイトル */}
-      <h1 className="text-2xl font-bold text-gray-800">設定</h1>
+      {/* ページヘッダー */}
+      <div className="flex items-center gap-2">
+        <span className="text-blue-600 text-xl">⚙️</span>
+        <h1 className="text-2xl font-bold text-gray-800">設定</h1>
+      </div>
 
       {/* 試験日設定フォーム */}
       <ExamDateForm

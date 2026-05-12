@@ -11,45 +11,56 @@ interface DomainProgressCardProps {
 const DomainProgressCard: React.FC<DomainProgressCardProps> = ({ progress }) => {
   const { domain, progressRate, completedCount, totalCount, inProgressCount } = progress;
 
-  // 進捗率に応じたバーの色
+  // 進捗率に応じたバーの色（青系テーマで統一）
   const getBarColor = (): string => {
-    if (progressRate >= 80) return 'bg-green-500';
+    if (progressRate >= 80) return 'bg-emerald-500';
     if (progressRate >= 50) return 'bg-blue-500';
-    if (progressRate >= 20) return 'bg-yellow-400';
-    return 'bg-gray-300';
+    if (progressRate >= 20) return 'bg-blue-400';
+    return 'bg-blue-200';
+  };
+
+  // 進捗率に応じたテキスト色
+  const getRateColor = (): string => {
+    if (progressRate >= 80) return 'text-emerald-600';
+    if (progressRate >= 50) return 'text-blue-600';
+    if (progressRate >= 20) return 'text-blue-500';
+    return 'text-gray-500';
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 hover:shadow-md transition-shadow duration-150">
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 hover:shadow-md hover:border-blue-100 transition-all duration-200">
       {/* ドメイン名と出題割合 */}
-      <div className="flex items-start justify-between mb-2">
-        <h3 className="text-sm font-semibold text-gray-800 leading-snug flex-1 pr-2">
+      <div className="flex items-start justify-between mb-3">
+        <h3 className="text-sm font-bold text-gray-800 leading-snug flex-1 pr-2">
           {domain.name}
         </h3>
-        <span className="text-xs text-gray-500 font-medium whitespace-nowrap bg-gray-100 px-1.5 py-0.5 rounded">
-          {domain.weight}%
+        <span className="text-xs text-blue-600 font-semibold whitespace-nowrap bg-blue-50 px-2 py-0.5 rounded-full border border-blue-100">
+          出題 {domain.weight}%
         </span>
       </div>
 
       {/* プログレスバー */}
-      <div className="w-full bg-gray-200 rounded-full h-2 mb-2 overflow-hidden">
+      <div className="w-full bg-gray-100 rounded-full h-2.5 mb-3 overflow-hidden">
         <div
-          className={`h-2 rounded-full transition-all duration-500 ${getBarColor()}`}
+          className={`h-2.5 rounded-full transition-all duration-700 ease-out ${getBarColor()}`}
           style={{ width: `${progressRate}%` }}
         />
       </div>
 
       {/* 数値サマリー */}
-      <div className="flex items-center justify-between text-xs text-gray-500">
-        <span>
-          <span className="font-semibold text-gray-700">{progressRate}%</span> 完了
+      <div className="flex items-center justify-between">
+        <span className={`text-lg font-bold ${getRateColor()}`}>
+          {progressRate}%
         </span>
-        <span>
-          {completedCount}/{totalCount}
+        <div className="text-xs text-gray-500 text-right">
+          <span className="font-semibold text-gray-700">{completedCount}</span>
+          <span>/{totalCount} 完了</span>
           {inProgressCount > 0 && (
-            <span className="ml-1 text-yellow-600">（学習中 {inProgressCount}）</span>
+            <span className="ml-1.5 text-amber-600 font-medium">
+              ({inProgressCount} 学習中)
+            </span>
           )}
-        </span>
+        </div>
       </div>
     </div>
   );

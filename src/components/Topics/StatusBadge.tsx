@@ -13,15 +13,15 @@ interface StatusBadgeProps {
 const STATUS_CONFIG: Record<StudyStatus, { label: string; classes: string }> = {
   not_started: {
     label: '未学習',
-    classes: 'bg-gray-100 text-gray-600 border border-gray-300',
+    classes: 'bg-slate-100 text-slate-600 border border-slate-300',
   },
   in_progress: {
     label: '学習中',
-    classes: 'bg-yellow-100 text-yellow-700 border border-yellow-300',
+    classes: 'bg-amber-100 text-amber-700 border border-amber-300',
   },
   completed: {
     label: '理解済み',
-    classes: 'bg-green-100 text-green-700 border border-green-300',
+    classes: 'bg-emerald-100 text-emerald-700 border border-emerald-300',
   },
 };
 
@@ -30,7 +30,7 @@ const StatusBadge: React.FC<StatusBadgeProps> = ({ status, size = 'sm' }) => {
   const sizeClass = size === 'md' ? 'px-3 py-1 text-sm' : 'px-2 py-0.5 text-xs';
 
   return (
-    <span className={`inline-flex items-center rounded-full font-medium ${sizeClass} ${config.classes}`}>
+    <span className={`inline-flex items-center rounded-full font-semibold ${sizeClass} ${config.classes}`}>
       {config.label}
     </span>
   );

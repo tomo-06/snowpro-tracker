@@ -74,21 +74,26 @@ const TopicsPage: React.FC<TopicsPageProps> = ({ appData, onUpdateTopic }) => {
 
   return (
     <div className="space-y-5">
-      {/* ページタイトル */}
-      <h1 className="text-2xl font-bold text-gray-800">トピック一覧</h1>
+      {/* ページヘッダー */}
+      <div className="flex items-center gap-2">
+        <span className="text-blue-600 text-xl">📚</span>
+        <h1 className="text-2xl font-bold text-gray-800">トピック一覧</h1>
+      </div>
 
       {/* フィルターパネル */}
-      <div className="bg-white rounded-xl border border-gray-100 shadow-sm p-4 space-y-4">
+      <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 space-y-4">
         <DomainFilter
           domains={appData.domains}
           selectedDomainId={selectedDomainId}
           onChange={setSelectedDomainId}
         />
-        <StatusFilter selectedStatus={selectedStatus} onChange={setSelectedStatus} />
+        <div className="border-t border-gray-50 pt-4">
+          <StatusFilter selectedStatus={selectedStatus} onChange={setSelectedStatus} />
+        </div>
       </div>
 
       {/* フィルター結果の件数表示 */}
-      <p className="text-sm text-gray-500">
+      <p className="text-xs text-gray-400 font-medium">
         {totalFilteredCount} 件のトピックが表示されています
       </p>
 

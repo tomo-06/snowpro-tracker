@@ -16,8 +16,11 @@ interface DashboardPageProps {
 const DashboardPage: React.FC<DashboardPageProps> = ({ stats }) => {
   return (
     <div className="space-y-6">
-      {/* ページタイトル */}
-      <h1 className="text-2xl font-bold text-gray-800">ダッシュボード</h1>
+      {/* ページヘッダー */}
+      <div className="flex items-center gap-2">
+        <span className="text-blue-600 text-xl">📊</span>
+        <h1 className="text-2xl font-bold text-gray-800">ダッシュボード</h1>
+      </div>
 
       {/* 試験日カウントダウン（試験日設定済みの場合のみ表示） */}
       {stats.daysUntilExam !== null && (
