@@ -1,3 +1,7 @@
+
+# 完成したアプリケーション
+https://github.com/user-attachments/assets/5593e533-4c98-4728-a8a2-2004af5a208f
+
 # SnowPro Core 学習トラッカー
 
 SnowPro Core 認定試験の学習進捗を分野別に管理するWebアプリです。
